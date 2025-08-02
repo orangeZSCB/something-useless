@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Sekibanki's Collapse</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://example.com/game-background.jpg');
+            background-size: cover;
+        }
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            margin-bottom: 30px;
+            color: #ff6600;
+        }
+        
+        .email-box {
+            margin: 20px 0;
+        }
+        
+        input[type="email"] {
+            width: 80%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+        }
+        
+        button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+        
+        button:hover {
+            background-color: #ff8533;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .modal-content {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 80%;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>报纸登记</h1>
+        <p>填写您的邮箱，我们将在游戏有活动的时候通知您！</p>
+        </br>
+        <p>Please sign your email, we'll notice you when the activities up!</p>
+        <div class="email-box">
+            <input type="email" id="email" placeholder="邮箱 / Type your email here!" required>
+        </div>
+        
+        <button onclick="register()">登记</button>
+    </div>
+    
+    <!-- 弹窗 -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Success！</h2>
+            <p>感谢你的登记！/Thank you for your signing up!</p>
+            <button onclick="closeModal()">OK</button>
+        </div>
+    </div>
+    
+    <script>
+        function register() {
+            const email = document.getElementById('email').value;
+            
+            // 简单的邮箱验证
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                alert('请输入有效的邮箱地址 Please check your email right or not');
+                return;
+            }
+            
+            // 这里可以添加发送到服务器的代码
+            // 例如: fetch('/api/register', { method: 'POST', body: JSON.stringify({email}) })
+            
+            // 显示成功弹窗
+            document.getElementById('successModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+        
+        // 点击弹窗外部关闭弹窗
+        window.onclick = function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
